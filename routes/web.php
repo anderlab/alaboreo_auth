@@ -20,4 +20,5 @@ Route::get('/', ['as'=>'home','uses'=>'AppController@index']);
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/admin', 'AdminController@index')->name('admin')->middleware('admin');;
+//Route::get('/admin', 'AdminController@index')->name('admin')->middleware('admin');
+Route::get('/admin','RoleController@listUsers')->middleware('auth', 'role:admin')->name('admin.index');

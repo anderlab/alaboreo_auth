@@ -14,7 +14,13 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    @if(Auth::user()->hasRole('admin'))
+                    <div>Acceso como administrador</div>
+                    <a href="{{route('admin.index')}}">Ir a la lista de usuarios
+                @else
+                    <div>Acceso usuario</div>
+                @endif
+                
                 </div>
             </div>
         </div>

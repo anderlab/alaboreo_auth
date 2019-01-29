@@ -32,11 +32,12 @@
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->created_at}}</td>
-                                @if ($user->role==0)
+                                <td>{{$user->roles[0]->description}}</td>
+                                {{-- @if ($user->roles->name=='admin')
                                 <td>Administrador</td>
                                 @else
                                 <td>Usuario basico</td>
-                                @endif
+                                @endif --}}
                             </tr>
                             @endforeach
                         </tbody>
