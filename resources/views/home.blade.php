@@ -6,24 +6,30 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
-
+                
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
                     @endif
-
+                    
                     @if(Auth::user()->hasRole('admin'))
                     <div>Acceso como administrador</div>
                     <a href="{{route('admin.index')}}">Ir a la lista de usuarios
-                @else
-                    <div>Acceso usuario</div>
-                @endif
-                
+                        @else
+                        <div>Acceso usuario</div>
+                        <a href="{{route('messages.index')}}">Ir a la lista de mensajes
+                            <a href="{{route('messages.create')}}">
+                                <br>
+                                <button class="btn btn-primary m-t-15 waves-effect">Nuevo mensaje</button></a>
+                                @endif
+                                <br>
+                                
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-@endsection
+            @endsection
+            

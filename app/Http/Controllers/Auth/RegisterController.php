@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -48,11 +49,33 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $messages = [
+            'password.required' => 'Es necesario introducir una contraseña',
+            'password.min' => 'La contraseña debe contener al menos 6 caracteres',
+            'password.confirmed' => 'Confirme la contraseña por favor',
+            'email.unique' => 'El email introducido ya ha sido registrado, por favor incie sesion',
+            'email.required' => 'Es necesario introducir un email',
+            'email.email' => 'El email introducido no es valido',
+            'email.max' => 'El email introducido es demasiado largo',
+            'name.required' => 'Es necesairo introducir un nombre',
+            'name.min' => 'El nombre debe de tener minimo 4 caracteres',
+            'name.max' => 'El nombre no puede ser tan largo', 
+            'name.regex' => 'No se aceptan caracteres especiales',
+            
+            
+        ];
+        
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:40', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
+            'name' => ['required', 
+                      'string',
+                      'max:10',
+                      'min:4', 
+                      'regex:/^(?!.*__.*)(?!.*\.\..*)[a-z0-9_.\s]+$/'],
+            
+            
+        ],$messages);
     }
 
     /**
