@@ -45,7 +45,7 @@ class MessageController extends Controller
         $message->subject = $request->input('subject');
         $message->message = $request->input('message');
         $message->save();
-        $request->session()->flash('sendOk', 'Mensaje enviado con exito');
+        $request->session()->put('sendOk', 'Mensaje enviado con exito');
         return redirect()->action('MessageController@index');
     }
     
@@ -100,7 +100,7 @@ class MessageController extends Controller
         
         $message->message = $request->input('newMessage');
         $message->save();
-        $request->session()->flash('editOk', 'Mensaje editado con exito');
+        $request->session()->put('editOk', 'Mensaje editado con exito');
         return view('/message',['message'=>$message]);
         
     }
@@ -116,7 +116,7 @@ class MessageController extends Controller
         $message = Message::find($id);
         if (Auth::user()){
           $message->delete();
-          $request->session()->flash('deleteOk', 'Mensaje eliminado con exito');
+          $request->session()->put('deleteOk', 'Mensaje eliminado con exito');
           return redirect()->action('MessageController@index');
         }else{
           abort(404);
