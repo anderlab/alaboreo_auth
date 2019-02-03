@@ -36,3 +36,6 @@ Route::get('/index','RoleController@listUsers')->middleware('auth', 'role:admin'
 // Route::delete('/messages/{message}','MessageController@destroy')->middleware('auth', 'role:user')->name('messages.destroy');
 
 Route::resource('messages','MessageController')->middleware('auth', 'role:user');
+
+Route::get('home', 'PersonalizacionController@personalizar');
+Route::post('home', 'PersonalizacionController@guardarpersonalizacion');

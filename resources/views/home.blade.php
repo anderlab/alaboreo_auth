@@ -28,6 +28,20 @@
                                 
                             </div>
                         </div>
+                        <div style="width:400px; height:200px; background-color:{{$color}}">
+                            <p>Color: {{$color}}</p>
+                            <form action="/home" method="post">
+                                @csrf
+                                Color: 
+                                <select name="color">
+                                    <option value="red">Rojo</option>
+                                    <option value="green">Verde</option>
+                                    <option value="white">Blanco</option>
+                                </select>
+                                <br />
+                                <input type="submit" value="Enviar">
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
